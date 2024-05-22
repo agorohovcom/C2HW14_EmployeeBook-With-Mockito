@@ -1,6 +1,7 @@
 package com.agorohov.employeebookwithmockito.service;
 
 import com.agorohov.employeebookwithmockito.exception.EmployeeAlreadyAddedException;
+import com.agorohov.employeebookwithmockito.exception.EmployeeNotFoundException;
 import com.agorohov.employeebookwithmockito.exception.UnsupportedNameException;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -19,7 +20,7 @@ class EmployeeServiceImplTest {
 
     @BeforeEach
     public void setUp() {
-        out.addEmployee(FIRST_NAME_3, LAST_NAME_3, SALARY_3, DEPARTMENT_3);
+        out.addEmployee(FIRST_NAME_ADDED, LAST_NAME_ADDED, SALARY_3, DEPARTMENT_3);
     }
 
     @Test
@@ -30,7 +31,7 @@ class EmployeeServiceImplTest {
     void shouldAddEmployeeCorrectly() {
         assertEquals(EMPLOYEE_1, out.addEmployee(UNFORMATTED_NAME_1, LAST_NAME_1, SALARY_1, DEPARTMENT_1));
         assertThrows(EmployeeAlreadyAddedException.class,
-                () -> out.addEmployee(FIRST_NAME_3, LAST_NAME_3, SALARY_3, DEPARTMENT_3));
+                () -> out.addEmployee(FIRST_NAME_ADDED, LAST_NAME_ADDED, SALARY_3, DEPARTMENT_3));
         assertThrows(UnsupportedNameException.class,
                 () -> out.addEmployee(UNSUPPORTED_FIRST_NAME, LAST_NAME_1, SALARY_1, DEPARTMENT_1));
         assertThrows(UnsupportedNameException.class,
@@ -38,11 +39,17 @@ class EmployeeServiceImplTest {
     }
 
     @Test
-    void removeEmployee() {
+    void shouldRemoveEmployeeCorrectly() {
+        assertEquals(EMPLOYEE_ADDED, out.removeEmployee(UNFORMATTED_FIRST_NAME_ADDED, LAST_NAME_ADDED));
+        assertThrows(EmployeeNotFoundException.class,
+                () -> out.removeEmployee(FIRST_NAME_1, LAST_NAME_1));
     }
 
     @Test
-    void findEmployee() {
-
+    void shouldFindEmployeeCorrectly() {
+        assertEquals(EMPLOYEE_ADDED, out.findEmployee(FIRST_NAME_ADDED, LAST_NAME_ADDED));
+        assertEquals(EMPLOYEE_ADDED, out.findEmployee(UNFORMATTED_FIRST_NAME_ADDED, LAST_NAME_ADDED));
+        assertThrows(EmployeeNotFoundException.class,
+                () -> out.findEmployee(FIRST_NAME_1, LAST_NAME_1));
     }
 }
