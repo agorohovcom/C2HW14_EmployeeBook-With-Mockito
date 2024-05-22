@@ -1,8 +1,8 @@
-package com.agorohov.employeebookwithmaven.exception.handler;
+package com.agorohov.employeebookwithmockito.exception.handler;
 
-import com.agorohov.employeebookwithmaven.exception.EmployeeAlreadyAddedException;
-import com.agorohov.employeebookwithmaven.exception.EmployeeNotFoundException;
-import com.agorohov.employeebookwithmaven.exception.UnsupportedNameException;
+import com.agorohov.employeebookwithmockito.exception.EmployeeAlreadyAddedException;
+import com.agorohov.employeebookwithmockito.exception.EmployeeNotFoundException;
+import com.agorohov.employeebookwithmockito.exception.UnsupportedNameException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 

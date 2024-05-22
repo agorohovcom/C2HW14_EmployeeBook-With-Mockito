@@ -1,9 +1,9 @@
-package com.agorohov.employeebookwithmaven.service;
+package com.agorohov.employeebookwithmockito.service;
 
-import com.agorohov.employeebookwithmaven.exception.EmployeeAlreadyAddedException;
-import com.agorohov.employeebookwithmaven.exception.EmployeeNotFoundException;
-import com.agorohov.employeebookwithmaven.exception.UnsupportedNameException;
-import com.agorohov.employeebookwithmaven.model.Employee;
+import com.agorohov.employeebookwithmockito.dto.Employee;
+import com.agorohov.employeebookwithmockito.exception.EmployeeAlreadyAddedException;
+import com.agorohov.employeebookwithmockito.exception.EmployeeNotFoundException;
+import com.agorohov.employeebookwithmockito.exception.UnsupportedNameException;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.stereotype.Service;
 

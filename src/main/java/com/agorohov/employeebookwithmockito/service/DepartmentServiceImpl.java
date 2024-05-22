@@ -1,7 +1,7 @@
-package com.agorohov.employeebookwithmaven.service;
+package com.agorohov.employeebookwithmockito.service;
 
-import com.agorohov.employeebookwithmaven.exception.EmployeeNotFoundException;
-import com.agorohov.employeebookwithmaven.model.Employee;
+import com.agorohov.employeebookwithmockito.dto.Employee;
+import com.agorohov.employeebookwithmockito.exception.EmployeeNotFoundException;
 import org.springframework.stereotype.Service;
 
 import java.util.Collection;

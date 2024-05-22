@@ -1,4 +1,4 @@
-package com.agorohov.employeebookwithmaven.model;
+package com.agorohov.employeebookwithmockito.dto;
 
 import java.util.Objects;
 

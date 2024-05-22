@@ -1,7 +1,7 @@
-package com.agorohov.employeebookwithmaven.controller;
+package com.agorohov.employeebookwithmockito.controller;
 
-import com.agorohov.employeebookwithmaven.model.Employee;
-import com.agorohov.employeebookwithmaven.service.EmployeeService;
+import com.agorohov.employeebookwithmockito.dto.Employee;
+import com.agorohov.employeebookwithmockito.service.EmployeeService;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;

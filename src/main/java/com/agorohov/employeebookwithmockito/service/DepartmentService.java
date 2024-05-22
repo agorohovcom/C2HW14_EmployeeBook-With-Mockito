@@ -1,6 +1,6 @@
-package com.agorohov.employeebookwithmaven.service;
+package com.agorohov.employeebookwithmockito.service;
 
-import com.agorohov.employeebookwithmaven.model.Employee;
+import com.agorohov.employeebookwithmockito.dto.Employee;
 
 import java.util.Collection;
 import java.util.List;
