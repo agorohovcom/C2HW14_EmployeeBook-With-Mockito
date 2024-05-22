@@ -6,9 +6,10 @@ import com.agorohov.employeebookwithmockito.exception.UnsupportedNameException;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import java.util.List;
+
 import static com.agorohov.employeebookwithmockito.constants.Constants.*;
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.junit.jupiter.api.Assertions.*;
 
 class EmployeeServiceImplTest {
 
@@ -20,18 +21,21 @@ class EmployeeServiceImplTest {
 
     @BeforeEach
     public void setUp() {
-        out.addEmployee(FIRST_NAME_ADDED, LAST_NAME_ADDED, SALARY_3, DEPARTMENT_3);
+        out.addEmployee(FIRST_NAME_3_ADDED, LAST_NAME_3_ADDED, SALARY_3_ADDED, DEPARTMENT_3_ADDED);
+        out.addEmployee(FIRST_NAME_4_ADDED, LAST_NAME_4_ADDED, SALARY_4_ADDED, DEPARTMENT_4_ADDED);
     }
 
     @Test
-    void findAllEmployees() {
+    public void shouldFindAllEmployeesCorrectly() {
+        assertNotNull(out.findAllEmployees());
+        assertIterableEquals(List.of(EMPLOYEE_3_ADDED, EMPLOYEE_4_ADDED), out.findAllEmployees());
     }
 
     @Test
-    void shouldAddEmployeeCorrectly() {
+    public void shouldAddEmployeeCorrectly() {
         assertEquals(EMPLOYEE_1, out.addEmployee(UNFORMATTED_NAME_1, LAST_NAME_1, SALARY_1, DEPARTMENT_1));
         assertThrows(EmployeeAlreadyAddedException.class,
-                () -> out.addEmployee(FIRST_NAME_ADDED, LAST_NAME_ADDED, SALARY_3, DEPARTMENT_3));
+                () -> out.addEmployee(FIRST_NAME_3_ADDED, LAST_NAME_3_ADDED, SALARY_3_ADDED, DEPARTMENT_3_ADDED));
         assertThrows(UnsupportedNameException.class,
                 () -> out.addEmployee(UNSUPPORTED_FIRST_NAME, LAST_NAME_1, SALARY_1, DEPARTMENT_1));
         assertThrows(UnsupportedNameException.class,
@@ -39,16 +43,16 @@ class EmployeeServiceImplTest {
     }
 
     @Test
-    void shouldRemoveEmployeeCorrectly() {
-        assertEquals(EMPLOYEE_ADDED, out.removeEmployee(UNFORMATTED_FIRST_NAME_ADDED, LAST_NAME_ADDED));
+    public void shouldRemoveEmployeeCorrectly() {
+        assertEquals(EMPLOYEE_3_ADDED, out.removeEmployee(UNFORMATTED_FIRST_NAME_3_ADDED, LAST_NAME_3_ADDED));
         assertThrows(EmployeeNotFoundException.class,
                 () -> out.removeEmployee(FIRST_NAME_1, LAST_NAME_1));
     }
 
     @Test
-    void shouldFindEmployeeCorrectly() {
-        assertEquals(EMPLOYEE_ADDED, out.findEmployee(FIRST_NAME_ADDED, LAST_NAME_ADDED));
-        assertEquals(EMPLOYEE_ADDED, out.findEmployee(UNFORMATTED_FIRST_NAME_ADDED, LAST_NAME_ADDED));
+    public void shouldFindEmployeeCorrectly() {
+        assertEquals(EMPLOYEE_3_ADDED, out.findEmployee(FIRST_NAME_3_ADDED, LAST_NAME_3_ADDED));
+        assertEquals(EMPLOYEE_3_ADDED, out.findEmployee(UNFORMATTED_FIRST_NAME_3_ADDED, LAST_NAME_3_ADDED));
         assertThrows(EmployeeNotFoundException.class,
                 () -> out.findEmployee(FIRST_NAME_1, LAST_NAME_1));
     }
