@@ -29,6 +29,12 @@ class EmployeeServiceImplTest {
     public void shouldFindAllEmployeesCorrectly() {
         assertNotNull(out.findAllEmployees());
         assertIterableEquals(List.of(EMPLOYEE_3_ADDED, EMPLOYEE_4_ADDED), out.findAllEmployees());
+
+        out.removeEmployee(FIRST_NAME_3_ADDED, LAST_NAME_3_ADDED);
+        out.removeEmployee(FIRST_NAME_4_ADDED, LAST_NAME_4_ADDED);
+
+        assertThrows(EmployeeNotFoundException.class,
+                out::findAllEmployees);
     }
 
     @Test
