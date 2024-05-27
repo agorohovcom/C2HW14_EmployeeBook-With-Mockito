@@ -31,6 +31,7 @@ public class Constants {
     public static final int DEPARTMENT_3_ADDED = 3;
     public static final int DEPARTMENT_4_ADDED = 4;
     public static final int DEPARTMENT_5_ADDED = 5;
+    public static final int DEPARTMENT_NOT_EXIST = 3432;
 
     public static final Employee EMPLOYEE_1 = new Employee(FIRST_NAME_1, LAST_NAME_1, SALARY_1, DEPARTMENT_1);
     public static final Employee EMPLOYEE_2 = new Employee(FIRST_NAME_2, LAST_NAME_2, SALARY_2, DEPARTMENT_2);

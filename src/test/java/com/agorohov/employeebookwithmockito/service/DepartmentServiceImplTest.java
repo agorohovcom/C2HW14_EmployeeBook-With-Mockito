@@ -44,7 +44,7 @@ class DepartmentServiceImplTest {
                         .reduce(Integer::sum)
                         .orElseThrow(),
                 out.getSumMonthSalaries(department));
-        assertThrows(EmployeeNotFoundException.class, () -> out.getSumMonthSalaries(DEPARTMENT_1));
+        assertThrows(EmployeeNotFoundException.class, () -> out.getSumMonthSalaries(DEPARTMENT_NOT_EXIST));
     }
 
     @ParameterizedTest
@@ -57,7 +57,7 @@ class DepartmentServiceImplTest {
                         .orElseThrow(),
                 out.getEmployeeWithMinSalary(departmentId)
         );
-        assertThrows(EmployeeNotFoundException.class, () -> out.getEmployeeWithMinSalary(DEPARTMENT_1));
+        assertThrows(EmployeeNotFoundException.class, () -> out.getEmployeeWithMinSalary(DEPARTMENT_NOT_EXIST));
     }
 
     @Test
