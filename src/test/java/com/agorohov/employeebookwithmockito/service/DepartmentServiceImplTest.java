@@ -3,7 +3,6 @@ package com.agorohov.employeebookwithmockito.service;
 import com.agorohov.employeebookwithmockito.dto.Employee;
 import com.agorohov.employeebookwithmockito.exception.EmployeeNotFoundException;
 import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -12,8 +11,10 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 
+import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import static com.agorohov.employeebookwithmockito.constants.Constants.*;
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -55,28 +56,49 @@ class DepartmentServiceImplTest {
                         .filter((e) -> e.getDepartment() == departmentId)
                         .min(Comparator.comparingInt(Employee::getSalary))
                         .orElseThrow(),
-                out.getEmployeeWithMinSalary(departmentId)
-        );
+                out.getEmployeeWithMinSalary(departmentId));
         assertThrows(EmployeeNotFoundException.class, () -> out.getEmployeeWithMinSalary(DEPARTMENT_NOT_EXIST));
     }
 
-    @Test
-    @Disabled
-    void getEmployeeWithMaxSalary() {
+    @ParameterizedTest
+    @ValueSource(ints = {DEPARTMENT_3_ADDED, DEPARTMENT_4_ADDED})
+    void getEmployeeWithMaxSalary(int departmentId) {
+        assertEquals(employeeServiceMock.findAllEmployees()
+                        .stream()
+                        .filter((e) -> e.getDepartment() == departmentId)
+                        .max(Comparator.comparingInt(Employee::getSalary))
+                        .orElseThrow(),
+                out.getEmployeeWithMaxSalary(departmentId));
+        assertThrows(EmployeeNotFoundException.class, () -> out.getEmployeeWithMaxSalary(DEPARTMENT_NOT_EXIST));
+    }
+
+    @ParameterizedTest
+    @ValueSource(ints = {DEPARTMENT_3_ADDED, DEPARTMENT_4_ADDED})
+    void shouldGetAverageMonthSalaryCorrectly(int departmentId) {
+        assertEquals(employeeServiceMock.findAllEmployees()
+                        .stream()
+                        .filter((e) -> e.getDepartment() == departmentId)
+                        .mapToInt(Employee::getSalary)
+                        .average()
+                        .orElseThrow(),
+                out.getAverageMonthSalary(departmentId));
+        assertThrows(EmployeeNotFoundException.class, () -> out.getAverageMonthSalary(DEPARTMENT_NOT_EXIST));
+    }
+
+    @ParameterizedTest
+    @ValueSource(ints = {DEPARTMENT_3_ADDED, DEPARTMENT_4_ADDED})
+    void shouldFindAllEmployeesCorrectly(int departmentId) {
+        assertEquals(employeeServiceMock.findAllEmployees().stream()
+                        .filter((e) -> e.getDepartment() == departmentId)
+                        .collect(Collectors.toCollection(ArrayList::new)),
+                out.findAllEmployees(departmentId));
+        assertThrows(EmployeeNotFoundException.class, () -> out.findAllEmployees(DEPARTMENT_NOT_EXIST));
     }
 
     @Test
-    @Disabled
-    void getAverageMonthSalary() {
-    }
-
-    @Test
-    @Disabled
-    void findAllEmployees() {
-    }
-
-    @Test
-    @Disabled
-    void testFindAllEmployees() {
+    void shouldFindAllEmployeesWithoutParameters() {
+        assertEquals(employeeServiceMock.findAllEmployees().stream()
+                        .collect(Collectors.groupingBy(Employee::getDepartment, Collectors.toList())),
+                out.findAllEmployees());
     }
 }
