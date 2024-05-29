@@ -23,7 +23,7 @@ class EmployeeServiceImplTest {
     public void setUp() {
         out.addEmployee(FIRST_NAME_3_ADDED, LAST_NAME_3_ADDED, SALARY_3_ADDED, DEPARTMENT_3_ADDED);
         out.addEmployee(FIRST_NAME_4_ADDED, LAST_NAME_4_ADDED, SALARY_4_ADDED, DEPARTMENT_4_ADDED);
-        out.addEmployee(FIRST_NAME_5_ADDED, LAST_NAME_5_ADDED, SALARY_5_ADDED, DEPARTMENT_5_ADDED);
+        out.addEmployee(FIRST_NAME_5_ADDED, LAST_NAME_5_ADDED, SALARY_5_ADDED, DEPARTMENT_4_ADDED);
     }
 
     @Test
