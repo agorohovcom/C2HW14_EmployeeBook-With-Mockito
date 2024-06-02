@@ -9,9 +9,9 @@
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
     <groupId>com.agorohov</groupId>
-    <artifactId>employee-book-with-maven</artifactId>
+    <artifactId>employee-book-with-mockito</artifactId>
     <version>0.0.1-SNAPSHOT</version>
-    <name>employee-book-with-maven</name>
+    <name>employee-book-with-mockito</name>
     <description>Demo project for Spring Boot</description>
     <properties>
         <java.version>17</java.version>
